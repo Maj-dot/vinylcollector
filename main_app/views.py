@@ -1,26 +1,19 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import Vinyl
 
-class Vinyl:
-    def __init__(self, name, artist, genre, description):
-        self.name = name
-        self.artist = artist
-        self.genre = genre
-        self.description = description
-     
 
-vinyls = [
-    Vinyl('In My Lifetime Vol.1', 'Jay-Z', 'Hip-Hop', 'One of the best albums ever!'),
-    Vinyl('Experience Hendrix', 'Jimi Hendrix', 'Psychedelic Rock', 'I Love Jimi!!'),
-    Vinyl('Views', 'Drake', 'Hip-Hop', 'Every Saturday Morning Type Of Vibe To Blast!!')
-]
 
 # Create your views here.
 def home(request):
     return render(request, 'home.html')
 
-def records(request):
-    return render(request, 'records.html')
+def about(request):
+    return render(request, 'about.html')
 
 def vinyls(request):
+    vinyls = Vinyl.objects.all()
     return render(request, 'vinyls/vinyls.html', {'vinyls': vinyls})
+
+def vinyl_detail(request, vinyl_id):
+    vinyl = Vinyl.objects.get(id=vinyl_id)
+    return render(request, 'vinyls/detail.html', {'vinyl': vinyl})

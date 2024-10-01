@@ -99,7 +99,8 @@ html {
   .header-logo-container {
     margin: auto;
     padding: 10px 20px 0;
-    max-width: 500px;
+    max-width: 100%;
+    height: auto;
   }
   
   .page-header {
@@ -187,6 +188,8 @@ html {
     /* visual fix to help align logo */
     .header-logo-container {
       padding-top: 3px;
+      max-width: 100%;
+      height: auto;
     }
   
     nav {
