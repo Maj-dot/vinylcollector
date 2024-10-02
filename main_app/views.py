@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Vinyl
 
 
@@ -16,3 +17,18 @@ def vinyls(request):
 def vinyl_detail(request, vinyl_id):
     vinyl = Vinyl.objects.get(id=vinyl_id)
     return render(request, 'vinyls/detail.html', {'vinyl': vinyl})
+
+class VinylCreate(CreateView):
+    model = Vinyl
+    fields = '__all__'
+    success_url = '/vinyls/'
+    
+class VinylUpdate(UpdateView):
+    model = Vinyl
+    fields = ['genre', 'description']
+    
+class VinylDelete(DeleteView):
+    model = Vinyl
+    success_url = '/vinyls/'        
+
+    

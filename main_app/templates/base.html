@@ -8,26 +8,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="shortcut icon"
-      type="image/png"
-      href="{% static 'images/Records.jpg'%}"
+      type="image/jpg"
+      href="{% static 'images/single-record.jpg'%}"
     />
     <title>The Vinyl Collector</title>
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     {% block head %} {% endblock %}
   </head>
+
   <body>
     <header>
       <div class="header-logo-container">
-        <a href="/">
+        {% comment %} <a href="/">
           <img
-            src="{% static 'images/Records.jpg' %}"
+            src="{% static 'images/single-record.jpg' %}"
             alt="The Vinyl Collector Logo"
           />
-        </a>
+        </a> {% endcomment %}
       </div>
       <nav>
         <ul>
           <li><a href="{% url 'vinyls' %}">All Vinyls</a></li>
+          <li><a href="{% url 'vinyl-create' %}">Add a Vinyl</a></li>
           <li><a href="{% url 'about' %}">About</a></li>
         </ul>
       </nav>
