@@ -12,5 +12,5 @@ class Vinyl(models.Model):
         return f'{self.name} ({self.id})'
     
     def get_absolute_url(self):
-        return reverse("vinyl_detail", kwargs={"vinyl_id": self.id})
+        return reverse("vinyl-detail", kwargs={"vinyl_id": self.id})
     
