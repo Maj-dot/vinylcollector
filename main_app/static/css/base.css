@@ -99,7 +99,7 @@ html {
   .header-logo-container {
     margin: auto;
     padding: 10px 20px 0;
-    max-width: 100%;
+    max-width: inherit;
     height: auto;
   }
   
@@ -159,6 +159,7 @@ html {
   
   .page-header img:first-of-type {
     margin-left: 20px;
+    max-width: inherit;
   }
   
   .page-content {
@@ -183,12 +184,13 @@ html {
     .header-logo-container {
       margin: 10px 0;
       padding: 0 15px;
+      max-width: fit-content;
     }
   
     /* visual fix to help align logo */
     .header-logo-container {
       padding-top: 3px;
-      max-width: 100%;
+      max-width: fit-content;
       height: auto;
     }
   
@@ -203,7 +205,7 @@ html {
     }
   
     .header-logo-container {
-      width: 213px;
+      width: inherit;
     }
   
     .page-header h1 {
@@ -213,6 +215,7 @@ html {
     .page-header img {
       height: 50px;
       margin-left: 20px;
+      width: 50px;
     }
   
     .page-header img:first-of-type {
