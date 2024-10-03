@@ -48,7 +48,7 @@ class PlaylistCreate(CreateView):
     model = Playlist
     fields = '__all__' 
     
-class Playlist(ListView):
+class PlaylistList(ListView):
     model = Playlist
     
 class PlaylistDetail(DetailView):
