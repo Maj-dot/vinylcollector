@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Vinyl
+from django.views.generic import ListView, DetailView
+from .models import Vinyl, Playlist
 from .forms import SongForm
 
 
@@ -43,4 +44,20 @@ def add_song(request, vinyl_id):
         new_song.save()
     return redirect('vinyl-detail', vinyl_id=vinyl_id)    
         
-            
+class PlaylistCreate(CreateView):
+    model = Playlist
+    fields = '__all__' 
+    
+class Playlist(ListView):
+    model = Playlist
+    
+class PlaylistDetail(DetailView):
+    model = Playlist
+    
+class PlaylistUpdate(UpdateView):
+    model = Playlist
+    fields = ['name', 'color']
+    
+class PlaylistDelete(DeleteView):
+    model = Playlist
+    success_url = '/playlist/'

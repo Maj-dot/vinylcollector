@@ -1,0 +1,27 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/playlist/playlist-index.css' %}" />
+{% endblock %} 
+{% block content %}
+
+<section class="page-header">
+  <h1>Playlist</h1>
+  <img src="{% static 'images/vinyl-cone' %}" alt="Vinyls in an ice cream cone" />  
+</section>
+
+<section class="card-container">
+  {% for playlist in playlist_list %}
+    <div class="card" style="border-color: {{ playlist.color }}">
+      <div class="card-bg" style="background-color: {{ playlist.color }}"></div>
+      <a href="{% url 'playlist-detail' playlist.id %}">
+        <div class="card-content">
+          <h2>{{ playlist.name }}</h2>
+          <p>A {{ playlist.color }} Playlist</p>
+        </div>
+      </a>
+    </div>
+  {% endfor %}
+</section>
+
+{% endblock %}
