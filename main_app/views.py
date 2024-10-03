@@ -56,7 +56,7 @@ class PlaylistDetail(DetailView):
     
 class PlaylistUpdate(UpdateView):
     model = Playlist
-    fields = ['name', 'color']
+    fields = ['name', 'description']
     
 class PlaylistDelete(DeleteView):
     model = Playlist
