@@ -2,11 +2,9 @@
 <link rel="stylesheet" href="{% static 'css/playlist/playlist-detail.css' %}" />
 {% endblock %} {% block content %}
 
-<div class="card">
-  <div class="card-bg"></div>
-  <div class="card-content">
-    <h2>{{ playlist.name }}</h2>
-    <p>My {{ playlist.description }}</p>
+<div class="card">  <div class="card-content">
+      <h1>{{ playlist.name }}</h1>
+      <p>{{ playlist.description }}</p>
   </div>
 </div>
 <a href="{% url 'playlist-update' playlist.id %}" class="btn warn">Edit</a>

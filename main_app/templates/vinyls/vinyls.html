@@ -16,10 +16,10 @@
       <a href="/vinyls/{{ vinyl.id }}">
         <div class="card-content">
           <div class="card-img-container">
-            <img
+            {% comment %} <img
               src="{% static 'images/vinyl-box.jpg' %}"
               alt="Collection of vinyl records"
-            />
+            /> {% endcomment %}
           </div>
           <h2 class="card-title">{{ vinyl.name }}</h2>
           <p><strong>Artist:</strong> {{ vinyl.artist }}</p>

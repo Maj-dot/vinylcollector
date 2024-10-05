@@ -4,7 +4,6 @@ from django.views.generic import ListView, DetailView
 from .models import Vinyl, Playlist
 from .forms import SongForm
 
-
 # Create your views here.
 def home(request):
     return render(request, 'home.html')
@@ -46,14 +45,13 @@ def add_song(request, vinyl_id):
         
 class PlaylistCreate(CreateView):
     model = Playlist
-    fields = '__all__' 
+    fields = '__all__'
     
 class PlaylistList(ListView):
     model = Playlist
     
 class PlaylistDetail(DetailView):
     model = Playlist
-    
 class PlaylistUpdate(UpdateView):
     model = Playlist
     fields = ['name', 'description']
