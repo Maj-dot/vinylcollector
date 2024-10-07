@@ -25,17 +25,8 @@
   <section class="playlist">
     <div class="subsection-title">
       <h2>Songs</h2>
-      {% comment %} <img
-        src="{% static 'images/cat-cone.svg' %}"
-        alt="An ice cream cone cat"
-      /> {% endcomment %}
-      {% comment %} <img src="{% static 'images/cat-onigiri.svg' %}" alt="A cat as onigiri" />
-      <img
-        src="{% static 'images/kitty-kabob.svg' %}"
-        alt="A kabob of kittens"
-      /> {% endcomment %}
     </div>
-
+   
   <h3>Add a Song</h3>
     <form action="{% url 'add-song' vinyl.id %}" method="post" class="subsection-content" autocomplete="off">
       {% csrf_token %}
@@ -66,5 +57,23 @@
     </div>
   {% endif %}    
   </section>
+
+  {% comment %} <section class ="playlist-song-container">
+    <div class="subsection-title">
+      <h2>Playlists</h2>
+    </div>
+    <h3>Available Playlists</h3>
+    <div class="subsection-content">
+      {% for playlist in playlists %}
+        <div class="playlist-container">
+          <p>{{playlist.name}}</p>
+          <form action="" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn submit">Give Playlist</button>
+          </form>  
+        </div>
+      {% endfor %}        
+    </div>
+  </section>   {% endcomment %}
 </div>
 {% endblock %}

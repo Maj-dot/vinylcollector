@@ -1,7 +1,8 @@
+from typing import Any
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from .models import Vinyl, Playlist
+from .models import Vinyl, Playlist, Song
 from .forms import SongForm
 
 # Create your views here.
@@ -45,16 +46,23 @@ def add_song(request, vinyl_id):
         
 class PlaylistCreate(CreateView):
     model = Playlist
-    fields = '__all__'
+    fields = ['name', 'description']
     
 class PlaylistList(ListView):
     model = Playlist
     
 class PlaylistDetail(DetailView):
     model = Playlist
+    template_name = 'playlist_detail.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['songs'] = Song.objects.all()
+        return context
+      
 class PlaylistUpdate(UpdateView):
     model = Playlist
-    fields = ['name', 'description']
+    fields = '__all__'
     
 class PlaylistDelete(DeleteView):
     model = Playlist

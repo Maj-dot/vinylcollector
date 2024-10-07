@@ -15,6 +15,7 @@ class Vinyl(models.Model):
     artist = models.CharField(max_length=100)
     genre = models.CharField(max_length=100)
     description = models.TextField(max_length=300)
+       
     
     def __str__(self):
         return f'{self.name} ({self.id})'
@@ -44,6 +45,7 @@ class Song(models.Model):
 class Playlist(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
+    songs = models.ManyToManyField(Song, related_name='playlists')
     
     def __str__(self):
         return self.name

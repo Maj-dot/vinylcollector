@@ -2,12 +2,32 @@
 <link rel="stylesheet" href="{% static 'css/playlist/playlist-detail.css' %}" />
 {% endblock %} {% block content %}
 
-<div class="card">  <div class="card-content">
-      <h1>{{ playlist.name }}</h1>
-      <p>{{ playlist.description }}</p>
+<div class="card">
+  <div class="card-content">
+    <h1><strong>{{ playlist.name }}<strong></h1>
+    <p>{{ playlist.description }}</p>
   </div>
 </div>
+
 <a href="{% url 'playlist-update' playlist.id %}" class="btn warn">Edit</a>
 <a href="{% url 'playlist-delete' playlist.id %}" class="btn danger">Delete</a>
+
+<section class="playlist-song-container">
+  <div class="subsection-title">
+    <h2>Songs</h2>
+  </div>
+  <h3>Available Songs</h3>
+  <div class="subsection-content">
+    {% for song in songs %}
+    <div class="playlist-container">
+      <p>{{playlist.name}}</p>
+      <form action="" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn submit">Give Song</button>
+      </form>
+    </div>
+    {% endfor %}
+  </div>
+</section>
 
 {% endblock %}
