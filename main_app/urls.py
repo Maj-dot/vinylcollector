@@ -10,6 +10,7 @@ urlpatterns = [
     path('vinyls/<int:pk>/update/', views.VinylUpdate.as_view(), name='vinyl-update'),
     path('vinyls/<int:pk>/delete/', views.VinylDelete.as_view(), name='vinyl-delete'),
     path('vinyls/<int:vinyl_id>/add-song/', views.add_song, name='add-song'),
+    path('playlist/<int:playlist_id>/add-playlist-song/', views.add_playlist_song, name='add-playlist-song'),
     path('playlist/create/', views.PlaylistCreate.as_view(), name='playlist-create'),
     path('playlist/<int:pk>/', views.PlaylistDetail.as_view(), name='playlist-detail'),
     path('playlist/', views.PlaylistList.as_view(), name='playlist-index'),

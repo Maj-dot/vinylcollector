@@ -58,13 +58,13 @@
   {% endif %}    
   </section>
 
-  {% comment %} <section class ="playlist-song-container">
+  <section class ="playlist-song-container">
     <div class="subsection-title">
       <h2>Playlists</h2>
     </div>
     <h3>Available Playlists</h3>
     <div class="subsection-content">
-      {% for playlist in playlists %}
+      {% for playlist in song.playlists.all %}
         <div class="playlist-container">
           <p>{{playlist.name}}</p>
           <form action="" method="post">
@@ -74,6 +74,6 @@
         </div>
       {% endfor %}        
     </div>
-  </section>   {% endcomment %}
+  </section>
 </div>
 {% endblock %}

@@ -46,19 +46,20 @@ def add_song(request, vinyl_id):
         
 class PlaylistCreate(CreateView):
     model = Playlist
-    fields = ['name', 'description']
+    fields = '__all__'
     
 class PlaylistList(ListView):
     model = Playlist
     
 class PlaylistDetail(DetailView):
     model = Playlist
-    template_name = 'playlist_detail.html'
+    # commented out below, detail page now works, but song form giving errors.
+    # template_name = 'playlist_detail.html'
     
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['songs'] = Song.objects.all()
-        return context
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['songs'] = Song.objects.all()
+    #     return context
       
 class PlaylistUpdate(UpdateView):
     model = Playlist
@@ -67,3 +68,11 @@ class PlaylistUpdate(UpdateView):
 class PlaylistDelete(DeleteView):
     model = Playlist
     success_url = '/playlist/'
+    
+def add_playlist_song(request, playlist_id):
+    form = SongForm(request.POST)
+    if form.is_valid():
+        new_song = form.save(commit=False)
+        new_song.playlist_id = playlist_id    
+        new_song.save()
+    return redirect('playlist-detail', playlist_id=playlist_id)     
