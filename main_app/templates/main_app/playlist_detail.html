@@ -15,8 +15,7 @@
   <section class="playlist">
     <div class="subsection-title">
       <h2>Songs</h2>
-    </div>
-   
+    </div> 
     <h3>Songs on Playlist</h3>
     {% if playlist.songs.count %}   
       <table>
@@ -31,33 +30,35 @@
           <tr>
             <td>{{song.title}}</td>
             <td>{{song.duration}}</td>
+            <form action="{% url 'remove-playlist-song' playlist.id song.id %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="btn submit">Remove Song</button>
+            </form>
           </tr>
           {% endfor %}
         </tbody>
       </table>
+    </div>
     {% else %} 
       <div class="subsection-content">
         <p class="no-song"> {{playlist.name}} has no songs!</p>
       </div>
     {% endif %}    
   </section>
-
-  <section class ="playlist">
-    <div class="subsection-title">
-      <h2>Available Songs</h2>
-    </div>
-    {% for song in songs %}
-    <form action="{% url 'add-playlist-song' playlist.id song.id %}" method="post" class="subsection-content" autocomplete="off">
+  
+  <div class="playlist-song-container">
+    <section class ="playlist">
+      <div class="subsection-title">
+        <h2>Available Songs</h2>
+      </div>
+      {% for song in songs %}
+      <form action="{% url 'add-playlist-song' playlist.id song.id %}" method="post" class="subsection-content" autocomplete="off">
         {% csrf_token %}
         <button type="submit" class="btn submit">Add "{{song.title}}"</button>
       </form>
-    {%  endfor %}       
-  </section> 
+      {%  endfor %}       
+    </section> 
+  </div>
 
 </div>
-
-
-
-
-
 {% endblock %}

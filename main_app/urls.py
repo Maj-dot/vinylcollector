@@ -19,4 +19,8 @@ urlpatterns = [
          views.add_playlist_song, 
          name='add-playlist-song'
          ),
+    path('playlist/<int:playlist_id>/remove-playlist-song/<int:song_id>/', 
+         views.remove_playlist_song, 
+         name='remove-playlist-song'
+         ),
 ]

@@ -46,7 +46,7 @@ def add_song(request, vinyl_id):
         
 class PlaylistCreate(CreateView):
     model = Playlist
-    fields = '__all__'
+    fields = ['name', 'description']
     
 class PlaylistList(ListView):
     model = Playlist
@@ -59,10 +59,16 @@ class PlaylistDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['songs'] = Song.objects.all()
-        return context
+        return context 
 
 def add_playlist_song(request, playlist_id, song_id):
     Playlist.objects.get(id=playlist_id).songs.add(song_id)
+    return redirect('playlist-detail', pk=playlist_id)
+
+def remove_playlist_song(request, playlist_id, song_id):
+    playlist = Playlist.objects.get(id=playlist_id)
+    song = Song.objects.get(id=song_id)
+    playlist.songs.remove(song)
     return redirect('playlist-detail', pk=playlist_id)  
       
 class PlaylistUpdate(UpdateView):
