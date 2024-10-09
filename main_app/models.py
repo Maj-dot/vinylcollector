@@ -35,7 +35,7 @@ class Song(models.Model):
     vinyl = models.ForeignKey(Vinyl, on_delete=models.CASCADE)
     
     def __str__(self):
-        return f"{self.get_mood_display()} on {self.date}"
+        return f"{self.title} on {self.date}"
     
     class Meta:
         ordering = ['-date']
