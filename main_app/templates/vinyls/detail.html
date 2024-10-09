@@ -45,8 +45,8 @@
       <tbody>
         {% for song in vinyl.song_set.all %}
         <tr>
-          <td>{{song.get_mood_display}}</td>
           <td>{{song.title}}</td>
+          <td>{{song.get_mood_display}}</td>  
         </tr>
         {% endfor %}
       </tbody>
@@ -58,22 +58,41 @@
   {% endif %}    
   </section>
 
-  <section class ="playlist-song-container">
+  {% comment %} <section class ="playlist-song-container">
     <div class="subsection-title">
       <h2>Playlists</h2>
     </div>
-    <h3>Available Playlists</h3>
-    <div class="subsection-content">
-      {% for playlist in song.playlists.all %}
-        <div class="playlist-container">
-          <p>{{playlist.name}}</p>
-          <form action="" method="post">
-            {% csrf_token %}
-            <button type="submit" class="btn submit">Give Playlist</button>
-          </form>  
-        </div>
-      {% endfor %}        
-    </div>
-  </section>
-</div>
+
+    <h3>{{ vinyl.name }}'s Playlist</h3>
+    {% for song in vinyl.playlists.all %}
+    <a href="{% url 'playlist-detail' playlist.id %}">
+      <p>My {{ playlist.name }}</p>
+    </a>  
+    <form action="{% url 'add-playlist-song' playlist.id song.id %}" method="post" class="subsection-content" autocomplete="off">
+        {% csrf_token %}
+        <button type="submit" class="btn submit">Add "{{playlist.name}}"</button>
+      </form>
+    {%  endfor %}       
+  </section> 
+</div> {% endcomment %}
 {% endblock %}
+
+
+
+
+
+
+  {% comment %} <section class ="playlist-song-container">
+    <div class="subsection-title">
+      <h2>Playlists</h2>
+    </div>
+    <h3>Choose </h3>
+    {% for song in songs %}
+      <form action="{% url 'add-playlist-song' playlist.id song.id %}" method="post" class="subsection-content" autocomplete="off">
+        {% csrf_token %}
+        <button type="submit" class="btn submit">Add "{{song.title}}"</button>
+      </form>
+    {%  endfor %}       
+    </div>
+  </section> {% endcomment %}
+

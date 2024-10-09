@@ -14,8 +14,7 @@ class Vinyl(models.Model):
     name = models.CharField(max_length=100)
     artist = models.CharField(max_length=100)
     genre = models.CharField(max_length=100)
-    description = models.TextField(max_length=300)
-       
+    description = models.TextField(max_length=300) 
     
     def __str__(self):
         return f'{self.name} ({self.id})'
@@ -27,7 +26,7 @@ class Vinyl(models.Model):
 class Song(models.Model):
     date = models.DateField('Latest Listening date')
     title = models.CharField(max_length=100)
-    duration = models.TimeField('Song Duration', max_length=10)
+    duration = models.DurationField('Song Duration', max_length=10)
     mood = models.CharField(
         max_length=20, 
         choices=MOOD_CHOICES,

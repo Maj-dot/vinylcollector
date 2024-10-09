@@ -5,22 +5,29 @@
 {% endblock %} 
 {% block content %}
 
-<section class="page-header">
-  <h1>Playlist</h1>
+<div class="card">
+  <div class="card-content">
+    <section class="page-header">
+      <h1>My Playlist</h1>
   {% comment %} <img src="{% static 'images/vinyl-cone' %}" alt="Vinyls in an ice cream cone" />   {% endcomment %}
-</section>
+    </section>
+  </div>
+</div>
+
+
 
 <section class="card-container">
   {% for playlist in playlist_list %}
-  <div class="playlist-song-container">  
-      <a href="{% url 'playlist-detail' playlist.id %}">
-        <div class="card-content">
-          <h2>{{ playlist.name }}</h2>
-          <p>{{ playlist.songs }}</p>
-        </div>
-      </a>
+    <div class="card">  
+    <a href="{% url 'playlist-detail' playlist.id %}">
+      <div class="card-content">
+        <div class="card-bg" style="button"></div>
+        <h2>{{ playlist.name }}</h2>
+      </div>
+    </a>
     </div>
   {% endfor %}
 </section>
+
 
 {% endblock %}

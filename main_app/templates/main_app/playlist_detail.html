@@ -2,10 +2,9 @@
 <link rel="stylesheet" href="{% static 'css/playlist/playlist-detail.css' %}" />
 {% endblock %} {% block content %}
 
-<div class="card">
+<div class="playlist-details">
   <div class="card-content">
     <h1><strong>{{ playlist.name }}<strong></h1>
-    <p>{{ playlist.songs }}</p>
   </div>
 </div>
 
@@ -18,53 +17,47 @@
       <h2>Songs</h2>
     </div>
    
-  <h3>Add a Song</h3>
-    <form action="{% url 'add-playlist-song' playlist.id %}" method="post" class="subsection-content" autocomplete="off">
-      {% csrf_token %}
-      {{ song_form.as_p }}
-      <button type="submit" class="btn submit">Add Song</button>
-    </form>
-  <h3>Songs on album</h3>
-  {% if vinyl.song_set.all.count %}   
-    <table>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Duration</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for song in playlist.song_set.all %}
-        <tr>
-          <td>{{song.get_mood_display}}</td>
-          <td>{{song.title}}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  {% else %} 
-    <div class="subsection-content">
-      <p> {{playlist.name}} has no songs!</p>
-    </div>
-  {% endif %}    
+    <h3>Songs on Playlist</h3>
+    {% if playlist.songs.count %}   
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Duration</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for song in playlist.songs.all %}
+          <tr>
+            <td>{{song.title}}</td>
+            <td>{{song.duration}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %} 
+      <div class="subsection-content">
+        <p class="no-song"> {{playlist.name}} has no songs!</p>
+      </div>
+    {% endif %}    
   </section>
 
-{% comment %} <section class="playlist-song-container">
-  <div class="subsection-title">
-    <h2>Songs</h2>
-  </div>
-  <h3>Available Songs</h3>
-  <div class="subsection-content">
-    {% for song in songs %}
-    <div class="playlist-container">
-      <p>{{playlist.name}}</p>
-      <form action="" method="post">
-        {% csrf_token %}
-        <button type="submit" class="btn submit">Give Song</button>
-      </form>
+  <section class ="playlist">
+    <div class="subsection-title">
+      <h2>Available Songs</h2>
     </div>
-    {% endfor %}
-  </div>
-</section> {% endcomment %}
+    {% for song in songs %}
+    <form action="{% url 'add-playlist-song' playlist.id song.id %}" method="post" class="subsection-content" autocomplete="off">
+        {% csrf_token %}
+        <button type="submit" class="btn submit">Add "{{song.title}}"</button>
+      </form>
+    {%  endfor %}       
+  </section> 
+
+</div>
+
+
+
+
 
 {% endblock %}
